@@ -11,11 +11,13 @@ heatmapArrange <- function(data_in, class_by = "", cluster_row = FALSE, cluster_
     if(scale == TRUE){
         if(by_row == TRUE){
             dfr <- data.frame(t(scale(t(data_in))))
+            colnames(dfr) <- colnames(data_in)
             } else {
-                dfr <- data.frame(scale(data_in))
+            dfr <- data.frame(scale(data_in))
+            colnames(dfr) <- colnames(data_in)
             }
         } else {
-            dfr <- data_in
+            dfr <- data.frame(data_in)
         }
     #melt
     dfr$row_value <- row.names(dfr)
@@ -40,6 +42,6 @@ heatmapArrange <- function(data_in, class_by = "", cluster_row = FALSE, cluster_
             dfr_mlt[[names(class_by)[x]]] <- class_vec
         }
     }
-    print("scale_fill_gradient2 reminder : scale_fill_gradient2(high = #d73027, mid = black, low = #1a9850)")
+        print("scale_fill_gradient2 reminder : scale_fill_gradient2(high = '#d73027', mid = 'black', low = '#1a9850')")
     dfr_mlt
 }
